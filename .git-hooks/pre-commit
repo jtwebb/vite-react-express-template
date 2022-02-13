@@ -1,0 +1,14 @@
+STAGED_FILES=$(git diff --staged --name-only {vite.config.js,bin/www,src/{.,**}/*.js} | xargs)
+
+if [[ $STAGED_FILES != "" ]];
+then
+  echo "Running eslint"
+  eslint --quiet --fix $STAGED_FILES
+
+  echo "Running prettier"
+  prettier --write --loglevel warn $STAGED_FILES
+
+  git add $STAGED_FILES
+fi
+
+

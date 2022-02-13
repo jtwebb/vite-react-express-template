@@ -1,0 +1,100 @@
+{
+  "name": "vite-react-express",
+  "version": "0.0.0",
+  "scripts": {
+    "clean": "rimraf dist",
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "client:build": "vite build",
+    "client:dev": "vite",
+    "server:build": "babel --verbose --out-dir dist --only 'src/server.js,src/index.js,src/lib/' src",
+    "server:dev": "nodemon bin/www",
+    "build": "npm run server:build && npm run client:build",
+    "serve": "vite preview",
+    "test": "prettier --check . && eslint",
+    "start": "node dist/index.js",
+    "cert": "rm -rf .cert && mkdir -p .cert && mkcert -key-file ./.cert/key.pem -cert-file ./.cert/cert.pem 'localhost'",
+    "set-git-hooks": "git config core.hooksPath .git-hooks",
+    "lint": "eslint --quiet --fix '{vite.config.js,src/**/*.js,bin/www}' && prettier --write --loglevel warn '{vite.config.js,src/**/*.js,bin/www}'"
+  },
+  "dependencies": {
+    "@svgr/rollup": "^6.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.1",
+    "workbox-background-sync": "^6.4.2",
+    "workbox-broadcast-update": "^6.4.2",
+    "workbox-cacheable-response": "^6.4.2",
+    "workbox-core": "^6.4.2",
+    "workbox-expiration": "^6.4.2",
+    "workbox-google-analytics": "^6.4.2",
+    "workbox-navigation-preload": "^6.4.2",
+    "workbox-precaching": "^6.4.2",
+    "workbox-range-requests": "^6.4.2",
+    "workbox-routing": "^6.4.2",
+    "workbox-strategies": "^6.4.2",
+    "workbox-streams": "^6.4.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.7",
+    "@jtwebb/eslint-plugin": "^1.1.0",
+    "@vitejs/plugin-react": "^1.0.2",
+    "autoprefixer": "^10.4.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "concurrently": "^7.0.0",
+    "cssnano": "^5.0.14",
+    "eslint": "^8.7.0",
+    "http-proxy-middleware": "^2.0.1",
+    "nodemon": "^2.0.13",
+    "normalize.css": "^8.0.1",
+    "prettier": "^2.5.1",
+    "prop-types": "^15.7.2",
+    "rimraf": "^3.0.2",
+    "sass": "^1.45.1",
+    "vite": "^2.5.10"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "endOfLine": "lf",
+    "printWidth": 120,
+    "quoteProps": "as-needed",
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "none",
+    "useTabs": false
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:@jtwebb/node"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "src/app/**/*.jsx",
+          "src/app/**/*.js"
+        ],
+        "extends": [
+          "plugin:@jtwebb/react"
+        ]
+      },
+      {
+        "files": [
+          "vite.config.js"
+        ],
+        "extends": [
+          "plugin:@jtwebb/react"
+        ],
+        "globals": {
+          "__dirname": true,
+          "process": true
+        }
+      }
+    ]
+  }
+}

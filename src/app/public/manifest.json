@@ -1,0 +1,21 @@
+{
+  "short_name": "App",
+  "name": "App",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "512x512 192x192 64x64 32x32 24x24 16x16",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icon-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#fafafa",
+  "background_color": "#ffffff"
+}
